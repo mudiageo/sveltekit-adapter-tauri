@@ -1,6 +1,7 @@
 {
 	"name": "sveltekit-adapter-tauri",
 	"version": "0.0.1",
+	"description": "SvelteKit adapter for Tauri with SSR support",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -14,6 +15,23 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run"
 	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"adapter",
+		"tauri",
+		"ssr"
+	],
+	"author": "Mudia Geo",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mudiageo/sveltekit-adapter-tauri.git"
+	},
+	"bugs": {
+		"url": "https://github.com/mudiageo/sveltekit-adapter-tauri/issues"
+	},
+	"homepage": "https://github.com/mudiageo/sveltekit-adapter-tauri#readme",
 	"files": [
 		"dist",
 		"!dist/**/*.test.*",
@@ -32,6 +50,8 @@
 		}
 	},
 	"peerDependencies": {
+		"@sveltejs/kit": "^2.0.0",
+		"@tauri-apps/api": "^1.5.0",
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {

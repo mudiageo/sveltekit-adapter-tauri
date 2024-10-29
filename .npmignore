@@ -1,0 +1,8 @@
+test/
+.github/
+.gitignore
+.eslintrc
+.prettierrc
+coverage/
+*.test.js
+*.spec.js

@@ -1,58 +1,70 @@
-# create-svelte
+sveltekit-adapter-tauri
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+An experimental SvelteKit adapter for Tauri applications with SSR support.
 
-Read more about creating a library [in the docs](https://svelte.dev/docs/kit/packaging).
+## Features
 
-## Creating a project
+- Full Server-Side Rendering (SSR) support
+- Seamless integration with Tauri's command system
+- Proper hydration and client-side navigation
+- TypeScript support
+- Comprehensive error handling
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Installation
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm install --save-dev sveltekit-adapter-tauri
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+## Usage
 
-## Building
+1. Update your `svelte.config.js`:
 
-To build your library:
+```javascript
+import adapter from 'sveltekit-adapter-tauri';
 
-```bash
-npm run package
+export default {
+	kit: {
+		adapter: adapter()
+	}
+};
 ```
 
-To create a production version of your showcase app:
+2. Add the Rust command handler to your Tauri `main.rs`:
 
-```bash
-npm run build
+```rust
+#[tauri::command]
+async fn handle_ssr(url: String, options: String) -> Result<String, String> {
+    // Implementation provided in build output
+}
+
+fn main() {
+    tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![handle_ssr])
+        // ...
+}
 ```
 
-You can preview the production build with `npm run preview`.
+3. That's it! Your SvelteKit app will now use SSR with Tauri.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Configuration Options
 
-## Publishing
+The adapter accepts the following options:
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+```javascript
+adapter({
+	// Custom options here
+});
 ```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

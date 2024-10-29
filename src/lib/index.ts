@@ -1,1 +1,3 @@
-// Reexport your entry components here
+import adapter from './adapter.js';
+
+export default adapter;
