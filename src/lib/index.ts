@@ -7,49 +7,49 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 interface AdapterTauriOptions {
-  mode?: 'ssr' | 'spa' | 'static' | 'server';
-  out?: string;
-  precompress?: boolean;
-  envPrefix?: string;
-  serverPath?: string;
+	mode?: 'ssr' | 'spa' | 'static' | 'server';
+	out?: string;
+	precompress?: boolean;
+	envPrefix?: string;
+	serverPath?: string;
 }
 
 export default function adapterTauri(options: AdapterTauriOptions = {}): AdapterConfig {
-  const {
-    mode = 'ssr',
-    out = 'build',
-    precompress = false,
-    envPrefix = '',
-    serverPath = 'src-tauri/src/server.rs'
-  } = options;
+	const {
+		mode = 'ssr',
+		out = 'build',
+		precompress = false,
+		envPrefix = '',
+		serverPath = 'src-tauri/src/server.rs'
+	} = options;
 
-  return {
-    name: 'sveltekit-adapter-tauri',
+	return {
+		name: 'sveltekit-adapter-tauri',
 
-    async adapt(builder: Builder) {
-      if (mode === 'static') {
-        return adapterStatic({ 
-          pages: out,
-          assets: out,
-          fallback: 'index.html',
-          precompress 
-        }).adapt(builder);
-      }
+		async adapt(builder: Builder) {
+			if (mode === 'static') {
+				return adapterStatic({
+					pages: out,
+					assets: out,
+					fallback: 'index.html',
+					precompress
+				}).adapt(builder);
+			}
 
-      const outputDir = resolve(out);
-      mkdirSync(outputDir, { recursive: true });
+			const outputDir = resolve(out);
+			mkdirSync(outputDir, { recursive: true });
 
-      builder.log.minor('Building SvelteKit app...');
-      
-      // Write client files
-      await builder.writeClient(outputDir);
-      await builder.writePrerendered(outputDir);
+			builder.log.minor('Building SvelteKit app...');
 
-      if (mode === 'server' || mode === 'ssr') {
-        const serverDir = join(outputDir, 'server');
-        mkdirSync(serverDir, { recursive: true });
-        await builder.writeServer(serverDir);
-const serverShim = `
+			// Write client files
+			await builder.writeClient(outputDir);
+			await builder.writePrerendered(outputDir);
+
+			if (mode === 'server' || mode === 'ssr') {
+				const serverDir = join(outputDir, 'server');
+				mkdirSync(serverDir, { recursive: true });
+				await builder.writeServer(serverDir);
+				const serverShim = `
 import { Server } from '@sveltejs/kit/node';
 import { manifest } from './server/manifest.js';
 import { building } from '$app/environment';
@@ -65,40 +65,31 @@ if (!building) {
 export { server };
 `;
 
-        // Write server shim directly from the template
-        writeFileSync(
-          join(outputDir, 'server-shim.js'),
-          serverShim
-        );
+				// Write server shim directly from the template
+				writeFileSync(join(outputDir, 'server-shim.js'), serverShim);
 
-        // Generate Rust server bindings
-        const tauriBindings = generateTauriServerBindings();
-        const rustServerPath = resolve(serverPath);
-        mkdirSync(dirname(rustServerPath), { recursive: true });
-        writeFileSync(rustServerPath, tauriBindings);
-      }
+				// Generate Rust server bindings
+				const tauriBindings = generateTauriServerBindings();
+				const rustServerPath = resolve(serverPath);
+				mkdirSync(dirname(rustServerPath), { recursive: true });
+				writeFileSync(rustServerPath, tauriBindings);
+			}
 
-      // Write client entry
-      writeFileSync(
-        join(outputDir, 'client.js'),
-        generateClientEntry(mode)
-      );
+			// Write client entry
+			writeFileSync(join(outputDir, 'client.js'), generateClientEntry(mode));
 
-      // Write shims directory
-      const shimsDir = join(outputDir, 'shims');
-      mkdirSync(shimsDir, { recursive: true });
-      
-      // Write platform-specific shims
-      writeFileSync(
-        join(shimsDir, 'platform.js'),
-        generatePlatformShim()
-      );
-    }
-  };
+			// Write shims directory
+			const shimsDir = join(outputDir, 'shims');
+			mkdirSync(shimsDir, { recursive: true });
+
+			// Write platform-specific shims
+			writeFileSync(join(shimsDir, 'platform.js'), generatePlatformShim());
+		}
+	};
 }
 
 function generatePlatformShim(): string {
-  return `
+	return `
 export const platform = {
   env: new Proxy({}, {
     get: (target, prop) => window.__TAURI__.env.get(prop.toString())
@@ -108,7 +99,7 @@ export const platform = {
 }
 
 function generateTauriServerBindings(): string {
-  return `
+	return `
 use tauri::{command, Runtime};
 use std::sync::Mutex;
 use serde::{Serialize, Deserialize};
@@ -157,8 +148,8 @@ pub async fn initialize_server<R: Runtime>(
 }
 
 function generateClientEntry(mode: string): string {
-  if (mode === 'spa') {
-    return `
+	if (mode === 'spa') {
+		return `
 import { invoke } from '@tauri-apps/api';
 
 async function start() {
@@ -172,10 +163,10 @@ async function start() {
 
 start().catch(console.error);
 `;
-  }
+	}
 
-  if (mode === 'server') {
-    return `
+	if (mode === 'server') {
+		return `
 import { invoke } from '@tauri-apps/api';
 
 async function start() {
@@ -196,10 +187,10 @@ async function start() {
 
 start().catch(console.error);
 `;
-  }
+	}
 
-  // Default SSR mode
-  return `
+	// Default SSR mode
+	return `
 import { invoke } from '@tauri-apps/api';
 
 async function start() {

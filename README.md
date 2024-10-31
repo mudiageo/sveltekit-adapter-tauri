@@ -14,11 +14,11 @@ import adapter from 'sveltekit-adapter-tauri';
 
 /** @type {import('@sveltejs/kit').Config} */
 export default {
-  kit: {
-    adapter: adapter({
-      mode: 'ssr' // default mode
-    })
-  }
+	kit: {
+		adapter: adapter({
+			mode: 'ssr' // default mode
+		})
+	}
 };
 ```
 
@@ -34,50 +34,54 @@ export default {
 ## Modes
 
 ### SSR Mode (Default)
+
 Server-side rendering with client-side hydration. Best for applications requiring SEO and initial fast page loads.
 
 ```javascript
 adapter({
-  mode: 'ssr'
-})
+	mode: 'ssr'
+});
 ```
 
 ### SPA Mode
+
 Single-page application mode. Best for applications with rich client-side interactions.
 
 ```javascript
 adapter({
-  mode: 'spa'
-})
+	mode: 'spa'
+});
 ```
 
 ### Static Mode
+
 Pre-renders all pages at build time. Best for content-focused sites.
 
 ```javascript
 adapter({
-  mode: 'static'
-})
+	mode: 'static'
+});
 ```
 
 ### Server Mode
+
 Enables server-side functionality through Tauri IPC. Best for applications requiring backend functionality.
 
 ```javascript
 adapter({
-  mode: 'server'
-})
+	mode: 'server'
+});
 ```
 
 ## Configuration Options
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| mode | 'ssr' \| 'spa' \| 'static' \| 'server' | 'ssr' | Application mode |
-| out | string | 'build' | Output directory |
-| precompress | boolean | false | Enable Brotli/Gzip precompression |
-| envPrefix | string | '' | Environment variable prefix |
-| serverPath | string | 'src-tauri/src/server.rs' | Server bindings path |
+| Option      | Type                                   | Default                   | Description                       |
+| ----------- | -------------------------------------- | ------------------------- | --------------------------------- |
+| mode        | 'ssr' \| 'spa' \| 'static' \| 'server' | 'ssr'                     | Application mode                  |
+| out         | string                                 | 'build'                   | Output directory                  |
+| precompress | boolean                                | false                     | Enable Brotli/Gzip precompression |
+| envPrefix   | string                                 | ''                        | Environment variable prefix       |
+| serverPath  | string                                 | 'src-tauri/src/server.rs' | Server bindings path              |
 
 ## Project Structure
 
@@ -98,18 +102,21 @@ my-tauri-app/
 ## Development Workflow
 
 1. Initialize your project:
+
 ```bash
 npx sv create my-tauri-app
 cd my-tauri-app
 ```
 
 2. Add Tauri:
+
 ```bash
 npm install --save-dev @tauri-apps/cli
 npm run tauri init
 ```
 
 3. Install the adapter:
+
 ```bash
 npm install --save-dev sveltekit-adapter-tauri
 ```
@@ -117,11 +124,13 @@ npm install --save-dev sveltekit-adapter-tauri
 4. Configure svelte.config.js as shown above
 
 5. Development:
+
 ```bash
 npm run tauri dev
 ```
 
 6. Build:
+
 ```bash
 npm run tauri build
 ```
@@ -166,8 +175,6 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 
 MIT
 
-
-
 ## what it does
 
 We're excited to announce sveltekit-adapter-tauri, an experimental adapter that brings the power of SvelteKit to Tauri applications. This adapter enables developers to build desktop applications using SvelteKit's powerful features while leveraging Tauri's secure, lightweight runtime.
@@ -186,6 +193,7 @@ The desktop application landscape is evolving. While Electron has been the go-to
 ## Looking Forward
 
 This is just the beginning. We're working on:
+
 - Enhanced server capabilities
 - Better development tools
 - Performance optimizations
@@ -200,9 +208,11 @@ Try it out and let me know what you think!
 This roadmap outlines the development path from experimental to production-ready status.
 
 ## Phase 1: Foundation (v0.1.x - v0.3.x)
+
 Current focus: Core functionality and stability
 
 ### v0.1.x (Current)
+
 - ✅ Basic adapter implementation
 - ✅ SSR support (basic)
 - ✅ Static file serving
@@ -210,6 +220,7 @@ Current focus: Core functionality and stability
 - ✅ Initial test suite
 
 ### v0.2.x (Q4 2024)
+
 - 🔄 Enhanced error handling
 - 🔄 Improved TypeScript support
 - 🔄 Basic hot module replacement (HMR)
@@ -219,6 +230,7 @@ Current focus: Core functionality and stability
 - 🔄 Basic CI/CD pipeline
 
 ### v0.3.x (Q1 2025)
+
 - 📋 Full server mode implementation
 - 📋 Tauri IPC optimization
 - 📋 Enhanced build process
@@ -227,9 +239,11 @@ Current focus: Core functionality and stability
 - 📋 Enhanced testing framework
 
 ## Phase 2: Enhancement (v0.4.x - v0.6.x)
+
 Focus: Feature completeness and developer experience
 
 ### v0.4.x (Q2 2025)
+
 - 📋 Advanced SSR features
 - 📋 Improved routing handling
 - 📋 Asset optimization
@@ -238,6 +252,7 @@ Focus: Feature completeness and developer experience
 - 📋 Performance monitoring tools
 
 ### v0.5.x (Q2 2025)
+
 - 📋 Advanced server features
   - WebSocket support
   - Server-sent events
@@ -248,6 +263,7 @@ Focus: Feature completeness and developer experience
 - 📋 Configuration presets
 
 ### v0.6.x (Q2 2025)
+
 - 📋 Advanced build optimizations
 - 📋 Custom server adapters
 - 📋 Enhanced error boundaries
@@ -256,9 +272,11 @@ Focus: Feature completeness and developer experience
 - 📋 Migration tools
 
 ## Phase 3: Stabilization (v0.7.x - v0.9.x)
+
 Focus: Production readiness and ecosystem
 
 ### v0.7.x (Q3 2025)
+
 - 📋 Production optimizations
   - Build size optimization
   - Load time improvements
@@ -268,6 +286,7 @@ Focus: Production readiness and ecosystem
 - 📋 Production monitoring tools
 
 ### v0.8.x (Q4 2025)
+
 - 📋 Enterprise features
   - Advanced security options
   - Custom protocols
@@ -277,6 +296,7 @@ Focus: Production readiness and ecosystem
 - 📋 Production testing tools
 
 ### v0.9.x (Q4 2025)
+
 - 📋 Final stabilization
 - 📋 Complete documentation
 - 📋 Migration guides
@@ -285,9 +305,11 @@ Focus: Production readiness and ecosystem
 - 📋 Security audits
 
 ## Phase 4: Production Release (v1.0.0)
+
 Target: Q1 2026
 
 ### v1.0.0
+
 - 📋 Production-ready release
 - 📋 Complete feature set
 - 📋 Comprehensive documentation
@@ -298,21 +320,25 @@ Target: Q1 2026
 ## Future Considerations (Post v1.0.0)
 
 ### Performance
+
 - Advanced build optimizations
 - Custom compilation targets
 - Enhanced caching strategies
 
 ### Developer Experience
+
 - Visual configuration tools
 - Enhanced debugging capabilities
 - Advanced development tools
 
 ### Enterprise Features
+
 - Custom protocol handling
 - Advanced security options
 - Enterprise deployment tools
 
 ### Ecosystem
+
 - Plugin system
 - Third-party integrations
 - Community templates
@@ -322,11 +348,13 @@ Target: Q1 2026
 We welcome contributions at all stages of development. Priority areas:
 
 1. Core Functionality
+
    - Bug fixes
    - Performance improvements
    - Test coverage
 
 2. Documentation
+
    - Usage examples
    - Best practices
    - Troubleshooting guides
@@ -339,6 +367,7 @@ We welcome contributions at all stages of development. Priority areas:
 ## Feature Requests
 
 Feature requests should align with our roadmap phases and focus on:
+
 1. Stability and reliability
 2. Developer experience
 3. Performance optimization
@@ -363,6 +392,7 @@ Submit feature requests through GitHub issues with the `enhancement` label.
 ## Success Metrics
 
 We'll measure success through:
+
 1. Adoption metrics
 2. Performance benchmarks
 3. Community feedback
@@ -379,14 +409,14 @@ We'll measure success through:
 ## Tracking Progress
 
 Track our progress:
+
 - GitHub Project Board
 - Milestone tracking
 - Regular releases
 - Development blog (coming soon)
 
 Legend:
+
 - ✅ Completed
 - 🔄 In Progress
 - 📋 Planned
-
-
