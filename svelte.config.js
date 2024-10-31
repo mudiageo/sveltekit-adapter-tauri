@@ -1,4 +1,4 @@
-import adapter from 'sveltekit-adapter-tauri';
+import adapter from './node_modules/sveltekit-adapter-tauri/dist/index.js';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
