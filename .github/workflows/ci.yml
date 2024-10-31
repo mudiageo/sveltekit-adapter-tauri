@@ -29,5 +29,5 @@ jobs:
         run: pnpm install
       - run: pnpm package
       - run: pnpm test
-      - run: pnpm fotmatt
+      - run: pnpm format
       - run: pnpm lint
