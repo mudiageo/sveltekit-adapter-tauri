@@ -57,6 +57,9 @@ importers:
       svelte-check:
         specifier: ^4.0.5
         version: 4.0.5(svelte@5.1.6)(typescript@5.6.3)
+      sveltekit-adapter-tauri:
+        specifier: ^0.1.3
+        version: 0.1.3(@sveltejs/kit@2.7.3(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.6)(vite@5.4.10))(svelte@5.1.6)(vite@5.4.10))(@tauri-apps/api@1.6.0)(svelte@5.1.6)
       typescript:
         specifier: ^5.6.3
         version: 5.6.3
@@ -1174,6 +1177,13 @@ packages:
   svelte@5.1.6:
     resolution: {integrity: sha512-bYS/DpkqXk0j5UZgiNXrEjZYPRZ4Ncd87w4KUSbcZGyojA0+i/Ls9OGUjETHmdLe8RcQ0G8SX/T0PypPpAA/ew==}
     engines: {node: '>=18'}
+
+  sveltekit-adapter-tauri@0.1.3:
+    resolution: {integrity: sha512-3250jdtY5+5DWcxyTIvgT6SYBQuB2kZsBmQhxloQFFNCVfkrjJ9hBNFavkKPeI50kB5cxVgBwSRYkSvioSKjfA==}
+    peerDependencies:
+      '@sveltejs/kit': ^2.0.0
+      '@tauri-apps/api': ^1.5.0
+      svelte: ^5.0.0
 
   text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
@@ -2386,6 +2396,12 @@ snapshots:
       locate-character: 3.0.0
       magic-string: 0.30.12
       zimmerframe: 1.1.2
+
+  sveltekit-adapter-tauri@0.1.3(@sveltejs/kit@2.7.3(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.6)(vite@5.4.10))(svelte@5.1.6)(vite@5.4.10))(@tauri-apps/api@1.6.0)(svelte@5.1.6):
+    dependencies:
+      '@sveltejs/kit': 2.7.3(@sveltejs/vite-plugin-svelte@4.0.0(svelte@5.1.6)(vite@5.4.10))(svelte@5.1.6)(vite@5.4.10)
+      '@tauri-apps/api': 1.6.0
+      svelte: 5.1.6
 
   text-table@0.2.0: {}
 
