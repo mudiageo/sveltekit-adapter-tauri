@@ -99,9 +99,8 @@ my-tauri-app/
 
 1. Initialize your project:
 ```bash
-npm create svelte@latest my-tauri-app
+npx sv create my-tauri-app
 cd my-tauri-app
-npm install
 ```
 
 2. Add Tauri:
@@ -171,7 +170,7 @@ MIT
 
 ## what it does
 
-Today, we're excited to announce sveltekit-adapter-tauri, an experimental adapter that brings the power of SvelteKit to Tauri applications. This adapter enables developers to build desktop applications using SvelteKit's powerful features while leveraging Tauri's secure, lightweight runtime.
+We're excited to announce sveltekit-adapter-tauri, an experimental adapter that brings the power of SvelteKit to Tauri applications. This adapter enables developers to build desktop applications using SvelteKit's powerful features while leveraging Tauri's secure, lightweight runtime.
 
 ## Why This Adapter?
 
