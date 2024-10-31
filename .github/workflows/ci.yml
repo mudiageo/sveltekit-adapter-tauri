@@ -27,6 +27,7 @@ jobs:
          cache: 'pnpm'
       - name: Install dependencies and run tests
         run: pnpm install   
+      - run: pnpm package
       - run: pnpm test
       - run: pnpm run lint
   
