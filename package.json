@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-adapter-tauri",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "SvelteKit adapter for Tauri with SSR support",
 	"scripts": {
 		"dev": "vite dev",
